@@ -14,7 +14,7 @@ function App() {
   const [checked, setChecked] = useState(
     localStorage.getItem("theme") === "dark" ? true : false
   );
-  const [sin, setsin] = useState()
+
 
 
   const getallusers=()=>{
@@ -75,13 +75,6 @@ function App() {
       setChecked(false);
     }
   };
-  useEffect(() => {
-    if (Usuarios) {
-      setsin(true);
-    }else{
-      setsin(false)
-    }
-  }, [create])
   
 
   return (
@@ -115,8 +108,6 @@ function App() {
           </div>
         }
       </div>
-      {
-      sin ?
       <div className='sec4'>
       {
         Usuarios?.map(user=>{
@@ -127,9 +118,7 @@ function App() {
           </div>
         })
       }
-      </div>:
-      <h1 className='sinu'>Bloque sin usuarios</h1>
-}
+      </div>
     </div>
   )
 }
