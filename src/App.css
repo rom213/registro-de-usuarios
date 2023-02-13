@@ -100,3 +100,7 @@ button{
     grid-template-columns: 1fr 1fr 1fr;
     gap: 1rem;
 }
+.sinu{
+    position: relative;
+    left: 300px;
+}

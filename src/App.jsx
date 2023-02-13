@@ -14,10 +14,11 @@ function App() {
   const [checked, setChecked] = useState(
     localStorage.getItem("theme") === "dark" ? true : false
   );
+  const [sin, setsin] = useState()
 
 
   const getallusers=()=>{
-    const url='http://users-crud.academlo.tech/users/'
+    const url='https://users-crud.academlo.tech/users/'
     axios.get(url)
       .then(res=>{
         setcreate(true)
@@ -31,7 +32,7 @@ function App() {
 
 
   const newuser=(data)=>{
-    const url='http://users-crud.academlo.tech/users/'
+    const url='https://users-crud.academlo.tech/users/'
     axios.post(url,data)
       .then(res=>{
         console.log(res.data)
@@ -40,7 +41,7 @@ function App() {
       .catch(err=>console.log(err))
   }
   const deleteuser=id=>{
-    const url=`http://users-crud.academlo.tech/users/${id}/`
+    const url=`https://users-crud.academlo.tech/users/${id}/`
     axios.delete(url)
       .then(res=>{
       console.log('borrado exitoso')
@@ -50,7 +51,7 @@ function App() {
   }
 
   const edituser=(id,data)=>{
-    const url=`http://users-crud.academlo.tech/users/${id}/`
+    const url=`https://users-crud.academlo.tech/users/${id}/`
     axios.patch(url,data)
       .then(res=>{
       console.log('Usuario editado Exitosamente')
@@ -74,6 +75,14 @@ function App() {
       setChecked(false);
     }
   };
+  useEffect(() => {
+    if (Usuarios) {
+      setsin(true);
+    }else{
+      setsin(false)
+    }
+  }, [create])
+  
 
   return (
     <div className="App">
@@ -94,6 +103,7 @@ function App() {
           />
         </label>
       <br />
+
       <div>
         {
           create ?
@@ -105,6 +115,8 @@ function App() {
           </div>
         }
       </div>
+      {
+      sin ?
       <div className='sec4'>
       {
         Usuarios?.map(user=>{
@@ -115,7 +127,9 @@ function App() {
           </div>
         })
       }
-      </div>
+      </div>:
+      <h1 className='sinu'>Bloque sin usuarios</h1>
+}
     </div>
   )
 }
